@@ -49,8 +49,11 @@ sitemap home label="Falcons Fire Home"
       Slider item=Kitchen_UnderCabinet1_Dimmer sendFrequency=200 switchSupport
       Slider item=Kitchen_UnderCabinet2_Dimmer sendFrequency=200 switchSupport
       Slider item=BasementProjectorSpot sendFrequency=200 switchSupport
+      Slider item=Christmas_Tree sendFrequency=200 switchSupport
       Switch item=MasterBathFanSwitch
       Switch item=OutdoorModule
+      Switch item=North_Window
+      Switch item=South_Window
       Text item=Sunrise_Time
       Text item=Sunset_Time
     }
