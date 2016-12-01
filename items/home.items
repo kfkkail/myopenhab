@@ -111,6 +111,7 @@ Number ZwaveNode01NetworkID "Node ID [%s]" (gZwaveNode01) {zwave="1:command=info
 Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers) {zwave="2"}
 Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers) {zwave="3"}
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers) {zwave="7"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" (lightsAtNight) {zwave="23"}
 Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB) {zwave="18:command=SWITCH_BINARY"}
 Switch MasterBathFanSwitch "Master Bath Fan" {zwave="20:command=SWITCH_BINARY"}
 Number GreatRoomSwitch_State "Great Room Switch State"
@@ -118,6 +119,8 @@ Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {zwave="5:comm
 Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {zwave="6:command=SWITCH_MULTILEVEL"}
 Dimmer BasementArt "Basement Art Dimmer [%d %%]" {zwave="19:command=SWITCH_MULTILEVEL"}
 Switch OutdoorModule "Outdoor Module" (lightsAtNight) {zwave="22:command=SWITCH_BINARY"}
+Switch North_Window "North Window" (lightsAtNight) {zwave="24:command=SWITCH_BINARY"}
+Switch South_Window "South Window" (lightsAtNight) {zwave="25:command=SWITCH_BINARY"}
 
 Contact Doorbell {zwave="14:command=ALARM"}
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {zwave="14:command=BATTERY"}
