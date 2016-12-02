@@ -27,6 +27,8 @@ rule "Turn On/Off Lights at Dusk/Dawn"
   then
     var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
     var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
+    logDebug("rules","Day Starts: "+daystart)
+    logDebug("rules","Day Ends: "+dayend)
 
     // Cancel Timers to avoid reschedule
     if(sunsetTimer!=null) {
@@ -65,8 +67,8 @@ rule "Turn On/Off Lights at Dusk/Dawn"
 
   logDebug("rules","Sunset Timer: "+sunsetTimer)
   logDebug("rules","Predawn Timer: "+preDawnTimer)
-  logDebug("rules","Dawn Timer: "+dawnTimer)
-  createTimer(plusMinutes(1)) [|
+  logDebug("rules","Dawn Timer: "+dawnTimer.state)
+  createTimer(now.plusMinutes(1)) [|
     logDebug("rules","Sunset Timer: "+sunsetTimer)
     logDebug("rules","Predawn Timer: "+preDawnTimer)
     logDebug("rules","Dawn Timer: "+dawnTimer)
