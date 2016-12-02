@@ -27,7 +27,8 @@ rule "Turn On/Off Lights at Dusk/Dawn"
   then
     var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
     var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
-    logDebug("rules","Now "+now)
+    logDebug("rules","Sunrise_Time: "+Sunrise_Time.state)
+    logDebug("rules","Sunset_Time: "+Sunset_Time.state)
     logDebug("rules","Day Starts: "+daystart)
     logDebug("rules","Day Ends: "+dayend)
 
@@ -46,7 +47,7 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     }
 
     logDebug("rules","Timer sunsetTimer created")
-    sunsetTimer = createTimer(dayend.minusMinutes(15)) [|
+    sunsetTimer = createTimer(now.plusSeconds(1)) [|
     	 logDebug("Rules","sunsetTimer ended - Turn On Group lightsAtNight")
 	     lightsAtNight?.members.forEach(Switch|
         sendCommand(Switch, ON)
