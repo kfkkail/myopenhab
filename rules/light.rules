@@ -27,6 +27,7 @@ rule "Turn On/Off Lights at Dusk/Dawn"
   then
     var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
     var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
+    logDebug("rules","Now "+now)
     logDebug("rules","Day Starts: "+daystart)
     logDebug("rules","Day Ends: "+dayend)
 
