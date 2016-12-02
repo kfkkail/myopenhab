@@ -120,6 +120,7 @@ Dimmer BasementArt "Basement Art Dimmer [%d %%]" {zwave="19:command=SWITCH_MULTI
 Switch OutdoorModule "Outdoor Module" (lightsAtNight) {zwave="22:command=SWITCH_BINARY"}
 Switch North_Window "North Window" (lightsAtNight) {zwave="24:command=SWITCH_BINARY"}
 Switch South_Window "South Window" (lightsAtNight) {zwave="25:command=SWITCH_BINARY"}
+Switch TriggerTimer "Light Timer Trigger"
 
 Contact Doorbell {zwave="14:command=ALARM"}
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {zwave="14:command=BATTERY"}
