@@ -22,7 +22,8 @@ rule "Turn Off Lights at Midnight for the Night"
 
 rule "Turn On/Off Lights at Dusk/Dawn"
   when
-    Time cron "0 0 2 ? * * *"
+    Time cron "0 0 2 ? * * *" or
+    Item TriggerTimer changed to ON
   then
     var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
     var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
@@ -61,6 +62,15 @@ rule "Turn On/Off Lights at Dusk/Dawn"
 	    lightsAtNight?.members.forEach(Switch|
 	     sendCommand(Switch, OFF)
 	)]
+
+  logDebug("rules","Sunset Timer: "+sunsetTimer)
+  logDebug("rules","Predawn Timer: "+preDawnTimer)
+  logDebug("rules","Dawn Timer: "+dawnTimer)
+  createTimer(plusMinutes(1)) [|
+    logDebug("rules","Sunset Timer: "+sunsetTimer)
+    logDebug("rules","Predawn Timer: "+preDawnTimer)
+    logDebug("rules","Dawn Timer: "+dawnTimer)
+    ]
   end
 
 rule "Great Room Light Switch!"
