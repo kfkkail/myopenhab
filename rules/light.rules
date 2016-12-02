@@ -47,25 +47,25 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     }
 
     logDebug("rules","Timer sunsetTimer created")
-    sunsetTimer = createTimer(now.plusSeconds(1) [|
+    sunsetTimer = createTimer(now.plusSeconds(1)) [|
     	 logDebug("Rules","sunsetTimer ended - Turn On Group lightsAtNight")
 	     lightsAtNight?.members.forEach(Switch|
         sendCommand(Switch, ON))
-      )]
+      ]
 
     logDebug("rules","Timer preDawnTimer created")
     preDawnTimer = createTimer(daystart.minusMinutes(150) [|
       logDebug("Rules","preDawnTimer ended - Turn On Group lightsAtNight")
       lightsAtNight?.members.forEach(Switch|
         sendCommand(Switch, ON))
-      )]
+      ]
 
     logDebug("rules","Timer dawnTimer created")
     dawnTimer = createTimer(daystart.plusMinutes(5) [|
       logDebug("Rules","dawnTimer ended - Turn Off Group lightsAtNight")
 	    lightsAtNight?.members.forEach(Switch|
 	     sendCommand(Switch, OFF))
-	)]
+	]
 
   logDebug("rules","Sunset Timer: "+sunsetTimer)
   logDebug("rules","Predawn Timer: "+preDawnTimer)
