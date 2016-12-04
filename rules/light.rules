@@ -57,7 +57,7 @@ rule "Turn On/Off Lights at Dusk/Dawn"
 
     logDebug("rules","Create preDawnTimer")
     //daystart.minusMinutes(150)
-    preDawnTimer = createTimer(daystart.minusMinutes(90)) [|
+    preDawnTimer = createTimer(daystart.minusMinutes(60)) [|
       logDebug("rules","preDawnTimer ended - Turn On Christmas Lights")
       sendCommand(North_Window, ON)
       sendCommand(South_Window, ON)
