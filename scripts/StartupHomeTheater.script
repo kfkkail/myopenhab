@@ -1,7 +1,6 @@
 if(Home_Theater_State.state == 0) {
   logDebug("rules", "Home_Theater_State is Starting Up (3)")
   sendCommand(Home_Theater_State, 3)
-
   sendCommand(BasementProjectorSpot, 100)
   sendCommand(BasementArt, 100)
   sendCommand(BasementStairsSwitch, ON)
