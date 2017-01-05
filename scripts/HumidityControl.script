@@ -1,0 +1,35 @@
+var Number currentUpstairsHumidity
+var Number currentBasementHumidity
+var Number currentOutsideTemperature
+var Number humidityTarget
+
+currentBasementHumidity = UPSTAIRS_PIR_REL_HUMID.state
+currentOutsideTemperature = Temperature_OWM.state
+
+if(currentOutsideTemperature > 50) {
+  humidityTarget = 45
+} else if(currentOutsideTemperature > 20) {
+  humidityTarget = 35
+} else if(currentOutsideTemperature > 10) {
+  humidityTarget = 30
+} else if(currentOutsideTemperature > 0) {
+  humidityTarget = 25
+} else if(currentOutsideTemperature > -10) {
+  humidityTarget = 20
+} else {
+  humidityTarget = 10
+}
+
+if(currentUpstairsHumidity < humidityTarget) {
+  sendCommand(Humidifier, ON)
+} else {
+  sendCommand(Humidifier, OFF)
+}
+
+if(currentBasementHumidity > 55) {
+  sendCommand(Dehumidifier, ON)
+} else if(currentBasementHumidity > 50) {
+  //Do nothing hysteresis
+} else {
+  sendCommand(Dehumidifier, OFF)
+}

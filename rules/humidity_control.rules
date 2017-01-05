@@ -1,0 +1,6 @@
+rule "Control Humidity"
+  when
+    Time Cron "0 */30 * * * *"
+  then
+    callScript("HumidityControl.script")
+end
