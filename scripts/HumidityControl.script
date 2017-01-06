@@ -9,13 +9,13 @@ currentOutsideTemperature = Temperature_OWM.state
 if(currentOutsideTemperature > 50) {
   humidityTarget = 45
 } else if(currentOutsideTemperature > 20) {
-  humidityTarget = 35
+  humidityTarget = 40
 } else if(currentOutsideTemperature > 10) {
-  humidityTarget = 30
+  humidityTarget = 35
 } else if(currentOutsideTemperature > 0) {
-  humidityTarget = 25
+  humidityTarget = 30
 } else if(currentOutsideTemperature > -10) {
-  humidityTarget = 20
+  humidityTarget = 25
 } else {
   humidityTarget = 10
 }
