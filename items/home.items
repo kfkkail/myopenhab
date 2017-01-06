@@ -106,7 +106,7 @@ Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {zwave="5:comm
 Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {zwave="6:command=SWITCH_MULTILEVEL"}
 Dimmer BasementArt "Basement Art Dimmer [%d %%]" {zwave="19:command=SWITCH_MULTILEVEL"}
 Switch OutdoorModule "Outdoor Module" (lightsAtNight) {zwave="22:command=SWITCH_BINARY"}
-Switch Dehumidifer "Dehumidifier" {zwave="24:command=SWITCH_BINARY"}
+Switch Dehumidifier "Dehumidifier" {zwave="24:command=SWITCH_BINARY"}
 Switch Humidifier "Humidifier" {zwave="25:command=SWITCH_BINARY"}
 Switch TriggerTimer "Light Timer Trigger"
 
