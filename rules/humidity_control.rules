@@ -1,6 +1,6 @@
 rule "Control Humidity"
   when
-    Time cron "0 0/30 * 1/1 * ? *"
+    Time cron "0 0/60 * 1/1 * ? *"
   then
     callScript("HumidityControl.script")
 end
