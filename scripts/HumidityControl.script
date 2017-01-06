@@ -30,10 +30,10 @@ if(currentUpstairsHumidity < humidityTarget) {
   sendCommand(Humidifier, OFF)
 }
 
-if(currentBasementHumidity > 55) {
-  sendCommand(Dehumidifier, ON)
-} else if(currentBasementHumidity > 50) {
-  //Do nothing hysteresis
-} else {
-  sendCommand(Dehumidifier, OFF)
-}
+// if(currentBasementHumidity > 55) {
+//   sendCommand(Dehumidifier, ON)
+// } else if(currentBasementHumidity > 50) {
+//   //Do nothing hysteresis
+// } else {
+//   sendCommand(Dehumidifier, OFF)
+// }

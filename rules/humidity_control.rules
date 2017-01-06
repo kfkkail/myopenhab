@@ -2,6 +2,5 @@ rule "Control Humidity"
   when
     Time cron "0 0/1 * 1/1 * ? *"
   then
-    logDebug("rules", "cron ran for humidity control")
     callScript("HumidityControl.script")
 end
