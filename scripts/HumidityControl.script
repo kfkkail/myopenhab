@@ -19,7 +19,7 @@ if(currentOutsideTemperature > 50) {
 } else {
   humidityTarget = 10
 }
-
+logDebug("rules","Current outside temperature is "+currentOutsideTemperature)
 logDebug("rules","Humidity target is "+humidityTarget)
 logDebug("rules","Current Humidity is "+currentUpstairsHumidity)
 
