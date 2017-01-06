@@ -22,6 +22,7 @@ if(currentOutsideTemperature > 50) {
 logDebug("rules","Current outside temperature is "+currentOutsideTemperature)
 logDebug("rules","Humidity target is "+humidityTarget)
 logDebug("rules","Current Humidity is "+currentUpstairsHumidity)
+logDebug("rules","Current Humidity is "+UPSTAIRS_PIR_REL_HUMID.state)
 
 if(currentUpstairsHumidity < humidityTarget) {
   logDebug("rules","Humidity below target, start humidifier")
