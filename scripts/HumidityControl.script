@@ -20,9 +20,13 @@ if(currentOutsideTemperature > 50) {
   humidityTarget = 10
 }
 
+logDebug("rules","Humidity target is "+humidityTarget)
+
 if(currentUpstairsHumidity < humidityTarget) {
+  logDebug("rules","Humidity below target, start humidifier")
   sendCommand(Humidifier, ON)
 } else {
+  logDebug("rules","Humidity above target, start humidifier")
   sendCommand(Humidifier, OFF)
 }
 
