@@ -1,25 +1,48 @@
 
 import org.openhab.model.script.actions.Timer
     var Timer timerMasterBathToilet
+    var Timer timerMasterBathShower
 
 rule "Turn on fan, but only let it run for 15 minutes"
   when
     Item MasterBathFanSwitch changed
   then
     if(MasterBathFanSwitch.state == ON) {
-      logDebug("rules", "Master Bath Fan Turned On - Start Timer")
-      if(timerMasterBathToilet!=null) {
-        logDebug("rules", "Master Bath Fan Turned On - Cancel Previous Timer")
-        timerMasterBathToilet.cancel
+      logDebug("rules", "Master Bath Shower Fan Turned On - Start Timer")
+      if(timerMasterBathShower!=null) {
+        logDebug("rules", "Master Bath Shower Fan Turned On - Cancel Previous Timer")
+        timerMasterBathShower.cancel
       }
 
-      timerMasterBathToilet = createTimer(now.plusMinutes(15)) [|
-        logDebug("rules", "Master Bath Fan Timer Expired - Turn Off")
+      timerMasterBathShower = createTimer(now.plusMinutes(15)) [|
+        logDebug("rules", "Master Bath Shower Fan Timer Expired - Turn Off")
         sendCommand(MasterBathFanSwitch, OFF)
-        timerMasterBathToilet.cancel
+        timerMasterBathShower.cancel
       ]
     } else {
-      logDebug("rules","Master Bath Fan Turned Off - Cancel Timer")
-      timerMasterBathToilet.cancel
+      logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
+      timerMasterBathShower.cancel
+    }
+  end
+
+rule "Turn on fan, but only let it run for 15 minutes"
+  when
+    Item MasterBathToiletFanSwitch changed
+  then
+    if(MasterBathToiletFanSwitch.state == ON) {
+      logDebug("rules", "Master Bath Fan Turned On - Start Timer")
+      if(timerMasterBathShower!=null) {
+        logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
+        timerMasterBathShower.cancel
+      }
+
+      timerMasterBathShower = createTimer(now.plusMinutes(15)) [|
+        logDebug("rules", "Master Bath Fan Timer Expired - Turn Off")
+        sendCommand(MasterBathToiletFanSwitch, OFF)
+        timerMasterBathShower.cancel
+      ]
+    } else {
+      logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
+      timerMasterBathShower.cancel
     }
   end
