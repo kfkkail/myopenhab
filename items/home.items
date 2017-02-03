@@ -95,24 +95,24 @@ String Home_Theater_Feedback    "Home Theater Feedback [%s]"
 Number Home_Theater_State       "Home Theater State"
 Number Bar_Speaker_Mode         "Bar Speaker Mode"
 
-Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers) {zwave="2"}
-Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers) {zwave="3"}
-Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers) {zwave="7"}
-Dimmer Christmas_Tree "Christmas Tree [%d %%]" {zwave="23"}
-Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB) {zwave="18:command=SWITCH_BINARY"}
-Switch MasterBathFanSwitch "Master Bath Shower Fan" {zwave="20:command=SWITCH_BINARY, refresh_interval=60"}
-Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" {zwave="26:command=SWITCH_BINARY, refresh_interval=60"}
+Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node2:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node3:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node7:switch_dimmer"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" {channel="zwave:device:f8a447cd:node23:switch_dimmer"}
+Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB) {channel="zwave:device:f8a447cd:node18:switch_binary"}
+Switch MasterBathFanSwitch "Master Bath Shower Fan" {channel="zwave:device:f8a447cd:node20:switch_binary, refresh_interval=60"}
+Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" {channel="zwave:device:f8a447cd:node26:switch_binary, refresh_interval=60"}
 Number GreatRoomSwitch_State "Great Room Switch State"
-Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {zwave="5:command=SWITCH_MULTILEVEL"}
-Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {zwave="6:command=SWITCH_MULTILEVEL"}
-Dimmer BasementArt "Basement Art Dimmer [%d %%]" {zwave="19:command=SWITCH_MULTILEVEL"}
-Switch OutdoorModule "Outdoor Module" (lightsAtNight) {zwave="22:command=SWITCH_BINARY"}
-Switch Dehumidifier "Dehumidifier" {zwave="24:command=SWITCH_BINARY"}
-Switch Humidifier "Humidifier" {zwave="25:command=SWITCH_BINARY"}
+Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {channel="zwave:device:f8a447cd:node5:switch_dimmer"}
+Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {channel="zwave:device:f8a447cd:node6:switch_dimmer"}
+Dimmer BasementArt "Basement Art Dimmer [%d %%]" {channel="zwave:device:f8a447cd:node19:switch_dimmer"}
+Switch OutdoorModule "Outdoor Module" (lightsAtNight) {channel="22:command=SWITCH_BINARY"} //Add channel information
+Switch Dehumidifier "Dehumidifier" {channel="zwave:device:f8a447cd:node24:switch_binary"}
+Switch Humidifier "Humidifier" {channel="zwave:device:f8a447cd:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 
-Contact Doorbell {zwave="14:command=ALARM"}
-Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {zwave="14:command=BATTERY"}
+Contact Doorbell {channel="14:command=ALARM"}
+Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:f8a447cd:node14:battery-level"}
 Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
 /* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
@@ -138,28 +138,28 @@ Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locat
 Switch PIRMotionDetection "PIR Motion Detection"
 
 Switch UpstairsPIRLightControl "Upstairs PIR Light Control"
-Contact UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {zwave="21:command=ALARM"}
-Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {zwave="21:command=BATTERY"}
-Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {zwave="21:command=sensor_multilevel,sensor_type=1,sensor_scale=1"}
-Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {zwave="21:command=sensor_multilevel,sensor_type=3"}
-Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumidity) {zwave="21:command=sensor_multilevel,sensor_type=5"}
-Contact UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> {zwave="21:command=BASIC"}
+Contact UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="21:command=ALARM"}
+Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="21:command=BATTERY"}
+Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="21:command=sensor_multilevel,sensor_type=1,sensor_scale=1"}
+Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {channel="21:command=sensor_multilevel,sensor_type=3"}
+Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="21:command=sensor_multilevel,sensor_type=5"}
+Contact UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> {channel="21:command=BASIC"}
 
 Switch GreatRoomPIRLightControl "Great Room PIR Light Control"
-Contact GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {zwave="15:command=ALARM"}
-Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {zwave="15:command=BATTERY"}
-Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {zwave="15:command=sensor_multilevel,sensor_type=1,sensor_scale=1"}
-Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {zwave="15:command=sensor_multilevel,sensor_type=3"}
-Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHumidity) {zwave="15:command=sensor_multilevel,sensor_type=5"}
-Contact GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> {zwave="15:command=BASIC"}
+Contact GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node15:alarm_burglar"}
+Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node15:battery-level"}
+Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node15:sensor_temperature"}
+Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node15:sensor_luminance"}
+Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f8a447cd:node15:sensor_relhumidity"}
+Contact GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node15:sensor_binary"}
 
 Switch BasementPIRLightControl "Basement PIR Light Control"
-Contact BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {zwave="17:command=ALARM"}
-Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {zwave="17:command=BATTERY"}
-Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {zwave="17:command=sensor_multilevel,sensor_type=1,sensor_scale=1"}
-Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {zwave="17:command=sensor_multilevel,sensor_type=3"}
-Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {zwave="17:command=sensor_multilevel,sensor_type=5"}
-Contact BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> {zwave="17:command=BASIC"}
+Contact BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node17:alarm_burglar"}
+Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node17:battery-level"}
+Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node17:sensor_temperature"}
+Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node17:sensor_luminance"}
+Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f8a447cd:node17:sensor_relhumidity"}
+Contact BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node17:sensor_binary"}
 
 Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
 

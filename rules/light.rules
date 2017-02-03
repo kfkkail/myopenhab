@@ -1,8 +1,3 @@
-import org.joda.time.*
-import org.openhab.core.library.types.*
-import org.openhab.model.script.actions.*
-import org.openhab.core.persistence.*
-
 val boolean doorbellRang = false
 var Timer sunsetTimer
 var Timer dawnTimer
@@ -16,7 +11,8 @@ rule "Turn Off Lights at Midnight for the Night"
 
     sendCommand(OutdoorModule, OFF)
     sendCommand(GarageDoorShutter, DOWN)
-  end
+end
+
 
 rule "Turn On/Off Lights at Dusk/Dawn"
   when
@@ -32,16 +28,16 @@ rule "Turn On/Off Lights at Dusk/Dawn"
 
     // Cancel Timers to avoid reschedule
     if(sunsetTimer!=null) {
-        logDebug("rules", "Timer sunsetTimer Cancelled")
-        sunsetTimer.cancel()
+      logDebug("rules", "Timer sunsetTimer Cancelled")
+      sunsetTimer.cancel()
     }
     if(preDawnTimer!=null) {
-        logDebug("rules", "Timer preDawnTimer Cancelled")
-        preDawnTimer.cancel()
+      logDebug("rules", "Timer preDawnTimer Cancelled")
+      preDawnTimer.cancel()
     }
     if(dawnTimer!=null) {
-        logDebug("rules", "Timer dawnTimer Cancelled")
-        dawnTimer.cancel()
+      logDebug("rules", "Timer dawnTimer Cancelled")
+      dawnTimer.cancel()
     }
 
     logDebug("rules","Create sunsetTimer")
@@ -65,17 +61,17 @@ rule "Turn On/Off Lights at Dusk/Dawn"
       sendCommand(OutdoorModule, OFF)
       ]
 
-  logDebug("rules","Sunset Timer: "+sunsetTimer)
-  logDebug("rules","Predawn Timer: "+preDawnTimer)
-  logDebug("rules","Dawn Timer: "+dawnTimer)
-  end
+    logDebug("rules","Sunset Timer: "+sunsetTimer)
+    logDebug("rules","Predawn Timer: "+preDawnTimer)
+    logDebug("rules","Dawn Timer: "+dawnTimer)
+end
 
 rule "Great Room Light Switch!"
   when
     Item GreatRoomSwitch received update
   then
     logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
-    if (GreatRoomSwitch_State.state == Uninitialized || GreatRoomSwitch_State.state == Undefined) {
+    if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
     	postUpdate(GreatRoomSwitch_State, 0)
     }
 
@@ -98,7 +94,7 @@ rule "Great Room Light Switch!"
       createTimer(now.plusSeconds(1)) [|
       	sendCommand(GreatRoomSwitch_State, 0)]
     }
-  end
+end
 
 rule "doorbell Basement Light Notification"
 	when
@@ -130,7 +126,7 @@ rule "Basement Switch Turn off ProjectorSpotLights"
     	sendCommand(BasementProjectorSpot, 0)
     	sendCommand(BasementArt, 0)
     }
-  end
+end
 
 rule "Basement Light PIR Motion"
   when
@@ -147,7 +143,7 @@ rule "Basement Light PIR Motion"
         sendCommand(BasementArt, 0)
       }
     }
-  end
+end
 
 rule "Great Room Light PIR Motion"
   when
@@ -160,12 +156,12 @@ rule "Great Room Light PIR Motion"
         sendCommand(Living_Room_Lamp_Dimmer, 30)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-	sendCommand(Christmas_Tree, 100)
+	      sendCommand(Christmas_Tree, 100)
       } else if (GREATROOM_PIR_MOTION.state == CLOSED && UPSTAIRS_PIR_MOTION.state == CLOSED) {
         logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
-	sendCommand(Christmas_Tree, 0)
+	      sendCommand(Christmas_Tree, 0)
       }
-  end
+end
