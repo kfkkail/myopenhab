@@ -5,8 +5,9 @@ var Number humidityTarget
 
 currentUpstairsHumidity = UPSTAIRS_PIR_REL_HUMID.state
 currentOutsideTemperature = Temperature_OWM.state
-
-if(currentOutsideTemperature > 50) {
+if(currentOutsideTemperature == NULL) {
+  humidityTarget = 30
+} else if(currentOutsideTemperature > 50) {
   humidityTarget = 45
 } else if(currentOutsideTemperature > 20) {
   humidityTarget = 40
