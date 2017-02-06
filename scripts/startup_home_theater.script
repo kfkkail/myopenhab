@@ -15,7 +15,7 @@ if(Home_Theater_State.state == 0) {
     createTimer(now.plusSeconds(5)) [|
       logDebug("rules", "Home_Theater_State is ON (1)")
       sendCommand(Home_Theater_State, 1)
-      callScript("basementArtDimCommand.script")]]
+      callScript("basement_art_dimmer.script")]]
 } else {
   return false
 }
