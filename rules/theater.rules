@@ -147,7 +147,7 @@ rule "Starting Up Home Theater State = 3"
     Item epsonPower changed to ON or
     Item integraPower changed to ON
   then
-    callScript("StartupHomeTheater.script")
+    callScript("startup_home_theater.script")
   end
 
 rule "Starting Up Home Theater State = 3 Basement Stair Switch"
@@ -156,7 +156,7 @@ rule "Starting Up Home Theater State = 3 Basement Stair Switch"
   then
     if(HomeTheaterSwitch.state == ON) {
       logDebug("rules","BasementStairsSwitch changed to ON - Startup Home Theater")
-      callScript("StartupHomeTheater.script")
+      callScript("startup_home_theater.script")
     }
   end
 
@@ -172,5 +172,5 @@ rule "Shutting Down Home Theater State = 2"
     Item epsonPower changed to OFF or
     Item integraPower changed to OFF
   then
-    callScript("ShutdownHomeTheater.script")
+    callScript("shutdown_home_theater.script")
   end

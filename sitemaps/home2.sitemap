@@ -1,4 +1,0 @@
-sitemap location label="Location"
-{
-  Frame label="{widget:clock}"
-}
